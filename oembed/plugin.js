@@ -10,7 +10,7 @@
         icons: 'oembed',
         hidpi: true,
         requires: 'widget,dialog',
-        lang: ['de', 'en', 'fr', 'nl', 'pl', 'pt-br', 'ru'],
+        lang: ['de', 'en', 'es', 'fr', 'nl', 'pl', 'pt-br', 'ru'],
         afterInit: function(editor) {
 
             /*var dataProcessor = editor.dataProcessor,
