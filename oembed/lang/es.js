@@ -1,0 +1,23 @@
+CKEDITOR.plugins.setLang('oembed', 'es', {
+    title: "Contenido Embebido (Foto, Video, Audio, Enriquecido)",
+    button: "Incrusta Contenido de Distintos Sitios",
+    pasteUrl: "Pega una URL (se soportan URLs cortas) de uno de los Sitios Soportados (p.e. YouTube, Flickr, Qik, Vimeo, Hulu, Viddler, MyOpera, etc.) aquí ...",
+    invalidUrl: "¡Por favor, proporcione una URL válida!",
+    noEmbedCode: "¡No se ha encontrado código embebido o el sitio no está soportado!",
+    url: "URL:",
+    width: "Ancho:",
+    height: "Alto:",
+    widthTitle: "Ancho para el Contenido Embebido",
+    heightTitle: "Alto para el Contenido Embebido",
+    maxWidth: "Ancho Max.:",
+    maxHeight: "Alto Max.:",
+    maxWidthTitle: "Ancho Máximo para el Contenido Embebido",
+    maxHeightTitle: "Alto Máximo para el Contenido Embebido",
+    resizeType: "Tipo de Redimensionamiento (Sólo para Vídeos):",
+    noresize: "No Redimensionar (por defecto)",
+    responsive: "Responsive",
+    custom: "Específico",
+    autoClose: "Cerrar Automáticamente el Diálogo despúes de que el Código sea Embebido",
+    noVimeo: "El dueño de este video ha establecido restricciones de dominio y no podrás ponerlo en tu web.",
+    Error: "No se puede recibir el Contenido. Por favor, pruebe una URL diferente."
+});
