@@ -1,13 +1,13 @@
 /*!
- * jquery oembed plugin
- *
- * Copyright (c) 2009 Richard Chamorro
- * Licensed under the MIT license
- * 
- * Orignal Author: Richard Chamorro 
- * Forked by Andrew Mee to Provide a slightly diffent kind of embedding 
- * experience
- */
+* jquery oembed plugin
+*
+* Copyright (c) 2009 Richard Chamorro
+* Licensed under the MIT license
+*
+* Orignal Author: Richard Chamorro
+* Forked by Andrew Mee to Provide a slightly diffent kind of embedding
+* experience
+*/
 (function($) {
     $.fn.oembed = function(url, options, embedAction) {
 
@@ -115,7 +115,7 @@
         useResponsiveResize: false,
         includeHandle: true,
         embedMethod: 'auto',
-        // "auto", "append", "fill"		
+        // "auto", "append", "fill"                
         onProviderNotFound: function() {
         },
         beforeEmbed: function() {
@@ -428,28 +428,28 @@
                 oembedContainer.append(oembedData.code);
             }
             /* Make videos semi-responsive
-                * If parent div width less than embeded iframe video then iframe gets shrunk to fit smaller width
-                * If parent div width greater thans embed iframe use the max widht
-                * - works on youtubes and vimeo
-                */
+* If parent div width less than embeded iframe video then iframe gets shrunk to fit smaller width
+* If parent div width greater thans embed iframe use the max widht
+* - works on youtubes and vimeo
+*/
                 /*if (settings.maxWidth) {
-                    var post_width = oembedContainer.parent().width();
-                    if (post_width < settings.maxWidth && settings.useResponsiveResize)
-                    {
-                        var iframe_width_orig = $('iframe',oembedContainer).width();
-                        var iframe_height_orig = $('iframe',oembedContainer).height();
-                        var ratio =  iframe_width_orig / post_width;
-                        $('iframe',oembedContainer).width(iframe_width_orig / ratio);
-                        $('iframe',oembedContainer).height(iframe_height_orig / ratio);
-                    } else {
-                        if(settings.maxWidth){
-                            $('iframe',oembedContainer).width(settings.maxWidth);
-                        }
-                        if(settings.maxHeight){
-                            $('iframe',oembedContainer).height(settings.maxHeight);
-                        }
-                    }
-                }*/
+var post_width = oembedContainer.parent().width();
+if (post_width < settings.maxWidth && settings.useResponsiveResize)
+{
+var iframe_width_orig = $('iframe',oembedContainer).width();
+var iframe_height_orig = $('iframe',oembedContainer).height();
+var ratio = iframe_width_orig / post_width;
+$('iframe',oembedContainer).width(iframe_width_orig / ratio);
+$('iframe',oembedContainer).height(iframe_height_orig / ratio);
+} else {
+if(settings.maxWidth){
+$('iframe',oembedContainer).width(settings.maxWidth);
+}
+if(settings.maxHeight){
+$('iframe',oembedContainer).height(settings.maxHeight);
+}
+}
+}*/
             break;
         }
     };
@@ -519,61 +519,7 @@
                     datareturn: function(results) {
 
                         if (results.json.type != 'video' && (results.json.url || results.json.thumbnail_url)) {
-                            return '<img src="' + (results.json.url || results.json.thumbnail_url) + '"  />';
-                        } else if (results.json.html.indexOf("iframe")) {
-
-                            // Quick fix to handle attribute less html5 properties in ckeditor
-                            if (results.json.html.indexOf("allowfullscreen>")) {
-                                results.json.html = results.json.html.replace('allowfullscreen>', 'allowfullscreen="false">');
-                            }
-
-                            var html = $.parseHTML(results.json.html);
-
-                            var width = html[0].width;
-                            var height = html[0].height;
-
-                            if (settings.maxHeight && settings.maxWidth) {
-
-                                if (settings.useResponsiveResize) {
-
-                                    var ratio;
-
-                                    var newWidth = width;
-                                    var newHeight = height;
-
-                                    // Check if the current width is larger than the max
-                                    if (width > settings.maxWidth) {
-                                        ratio = settings.maxWidth / width;
-
-                                        newWidth = settings.maxWidth;
-                                        newHeight = height * ratio;
-
-                                        // reset
-                                        height = height * ratio;
-                                        width = width * ratio;
-                                    }
-
-                                    // Check if current height is larger than max
-                                    if (height > settings.maxHeight) {
-                                        ratio = settings.maxHeight / height;
-
-                                        newHeight = settings.maxHeight;
-                                        newWidth = width * ratio;
-                                    }
-
-                                    height = newHeight;
-                                    width = newWidth;
-                                } else {
-                                    height = settings.maxHeight;
-                                    width = settings.maxWidth;
-                                }
-
-                            }
-
-                            html[0].width = width;
-                            html[0].height = height;
-
-                            return html[0].outerHTML;
+                            return '<img src="' + (results.json.url || results.json.thumbnail_url) + '" />';
                         }
                         return results.json.html || '';
                     }
@@ -595,14 +541,14 @@
     };
 
     /*
-     * Function to update existing providers
-     *
-     * @param  {String}    name             The name of the provider
-     * @param  {String}    type             The type of the provider can be "file", "photo", "video", "rich"
-     * @param  {String}    urlshemesarray   Array of url of the provider
-     * @param  {String}    apiendpoint      The endpoint of the provider
-     * @param  {String}    extraSettings    Extra settings of the provider
-     */
+* Function to update existing providers
+*
+* @param {String} name The name of the provider
+* @param {String} type The type of the provider can be "file", "photo", "video", "rich"
+* @param {String} urlshemesarray Array of url of the provider
+* @param {String} apiendpoint The endpoint of the provider
+* @param {String} extraSettings Extra settings of the provider
+*/
     $.fn.updateOEmbedProvider = function(name, type, urlschemesarray, apiendpoint, extraSettings) {
         for (var i = 0; i < $.fn.oembed.providers.length; i++) {
             if ($.fn.oembed.providers[i].name === name) {
@@ -696,7 +642,7 @@
         new $.fn.oembed.OEmbedProvider("VHX", "video", ["vhx.tv/.+"], "http://vhx.tv/services/oembed.json"),
         new $.fn.oembed.OEmbedProvider("bambuser", "video", ["bambuser.com/.+"], "http://api.bambuser.com/oembed/iframe.json"),
         new $.fn.oembed.OEmbedProvider("justin.tv", "video", ["justin.tv/.+"], 'http://api.justin.tv/api/embed/from_url.json', { useYQL: 'json' }),
-        //Audio 
+        //Audio
         new $.fn.oembed.OEmbedProvider("official.fm", "rich", ["official.fm/.+"], 'http://official.fm/services/oembed', { useYQL: 'json' }),
         new $.fn.oembed.OEmbedProvider("chirbit", "rich", ["chirb.it/.+"], 'http://chirb.it/oembed.json', { useYQL: 'json' }),
         new $.fn.oembed.OEmbedProvider("Huffduffer", "rich", ["huffduffer.com/[-.\\w@]+/\\d+"], "http://huffduffer.com/oembed"),
@@ -745,7 +691,7 @@
         new $.fn.oembed.OEmbedProvider("chart.ly", "photo", ["chart\\.ly/[a-z0-9]{6,8}"], "http://chart.ly/uploads/large_$1.png",
             { templateRegex: /.*ly\/([^\/]+).*/, embedtag: { tag: 'img' }, nocache: 1 }),
         //new $.fn.oembed.OEmbedProvider("stocktwits.com", "photo", ["stocktwits\\.com/message/.+"], "http://charts.stocktwits.com/production/original_$1.png?",
-    //	{ templateRegex: /.*message\/([^\/]+).*/, embedtag: { tag: 'img'},nocache:1 }),
+    //        { templateRegex: /.*message\/([^\/]+).*/, embedtag: { tag: 'img'},nocache:1 }),
         new $.fn.oembed.OEmbedProvider("circuitlab", "photo", ["circuitlab.com/circuit/.+"], "https://www.circuitlab.com/circuit/$1/screenshot/540x405/",
             { templateRegex: /.*circuit\/([^\/]+).*/, embedtag: { tag: 'img' }, nocache: 1 }),
         new $.fn.oembed.OEmbedProvider("23hq", "photo", ["23hq.com/[-.\\w@]+/photo/.+"], "http://www.23hq.com/23/oembed", { useYQL: "json" }),
@@ -838,7 +784,7 @@
                     if (!data.Title) {
                         return false;
                     }
-                    return '<div id="content"><h3><a class="nav-link" href="http://imdb.com/title/' + data.ID + '/">' + data.Title + '</a> (' + data.Year + ')</h3><p>Starring: ' + data.Actors + '</p><div id="photo-wrap" style="margin: auto;width:600px;height:450px;"><img class="photo" id="photo-display" src="' + data.Poster + '" alt="' + data.Title + '"></div>  <div id="view-photo-caption">' + data.Plot + '</div></div>';
+                    return '<div id="content"><h3><a class="nav-link" href="http://imdb.com/title/' + data.ID + '/">' + data.Title + '</a> (' + data.Year + ')</h3><p>Starring: ' + data.Actors + '</p><div id="photo-wrap" style="margin: auto;width:600px;height:450px;"><img class="photo" id="photo-display" src="' + data.Poster + '" alt="' + data.Title + '"></div> <div id="view-photo-caption">' + data.Plot + '</div></div>';
                 }
             }),
         new $.fn.oembed.OEmbedProvider("livejournal", "rich", ["livejournal.com/"], "http://ljpic.seacrow.com/json/$2$4?jsonp=?", {
